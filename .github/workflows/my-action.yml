@@ -15,21 +15,22 @@ jobs:
             run: echo "Hello, Gitub Actions!"
     
     # Jobs to build and test out C code
-    needs: [say-hello]
-    runs-on: ubuntu-lates
-    steps:
-        # Use github.com/actions/checkoout to checkout this repo
-      - name: Check out this repo
-        uses: actions/checkout@v3
+    build-and-test:
+        needs: [say-hello]
+        runs-on: ubuntu-lates
+        steps:
+            # Use github.com/actions/checkoout to checkout this repo
+          - name: Check out this repo
+            uses: actions/checkout@v3
 
-        # install necessary packages
-      - name: Install dependencies
-        run: sudo apt install -y build-essential python3
-        
-        # show present working directory
-      - run: pwd
+            # install necessary packages
+          - name: Install dependencies
+            run: sudo apt install -y build-essential python3
+            
+            # show present working directory
+          - run: pwd
 
-      # run python test script
-      - name: Run test
-        run: python3 test.py
+        # run python test script
+          - name: Run test
+            run: python3 test.py
 
